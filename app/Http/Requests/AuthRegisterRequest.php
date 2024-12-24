@@ -24,9 +24,10 @@ class AuthRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "firstname"=>"required",
-            "lastname"=>"required",
-            "email"=>"required|email|unique:users",
+            "firstname"=>"required|string",
+            "lastname"=>"required|string",
+            "phoneNumber"=>"required|unique:users",
+            "email"=>"sometimes|email|unique:users",
             "password"=>"required"
         ];
     }
@@ -36,7 +37,7 @@ class AuthRegisterRequest extends FormRequest
         return [
             "firstname.required"=>"Prénom requis",
             "lastname.required"=>"Nom requis",
-            "email.required"=>"Email requis",
+            "phoneNumber.required"=>"Numéro de téléphone requis",
             "password.required"=>"Mot de passe requis"
         ];
     }

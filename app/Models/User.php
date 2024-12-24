@@ -28,6 +28,16 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Invoice::class);
     }
 
+    public function phoneMessages()
+    {
+        return $this->hasMany(PhoneMessage::class);
+    }
+
+    public function wallet()
+    {
+        $this->hasOne(Wallet::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,6 +46,7 @@ class User extends Authenticatable implements JWTSubject
     protected $fillable = [
         'firstname',
         'lastname',
+        'phoneNumber',
         'email',
         'role',
         'password',

@@ -24,7 +24,7 @@ class AuthLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "email"=>"required|email",
+            "identifier"=>"required",
             "password"=>"required"
         ];
     }
@@ -32,7 +32,7 @@ class AuthLoginRequest extends FormRequest
     public function messages()
     {
         return [
-            "email.required"=>"Email requis",
+            "identifier.required"=>"Email ou numéro requis",
             "password.required"=>"Mot de passe requis"
         ];
     }

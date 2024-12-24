@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreInvoiceRequest extends FormRequest
+class VerifyPhoneRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,17 @@ class StoreInvoiceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //'user_id'=>"required|integer",
-            'products'=>'required|array',
-            'amount'=>'sometimes|integer',
-            'products.*.id' => 'required|exists:products,id',
-            'products.*.quantity' => 'required|integer|min:1',
-            'products.*.price' => 'sometimes|numeric|min:0',
+            "phoneNumber"=>"required|string",
+            "otpCode"=>"required|string"
         ];
     }
 
     public function messages()
     {
-        return [
-            //"user_id.required"=>"userId requis",
-            "products.required"=>"productId requis"
+        return
+        [
+            "phoneNumber.required"=>"Le numéro est requis",
+            "otpCode.required"=>"Code otp requis"
         ];
     }
 
@@ -50,6 +47,4 @@ class StoreInvoiceRequest extends FormRequest
             ], 400)
         );
     }
-
-    
 }
